@@ -6,26 +6,37 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <script type="module" src="src/main.js"></script>
     <link rel="stylesheet" href="./style.css" />
-    <title>Cat Search</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
+      rel="stylesheet"
+    />
+    <title>Search Your Cat 😼</title>
   </head>
 
-  <body>
+  <body data-theme="light-mode">
     <div id="App">
-      <div class="loading">
-        <span>데이터 불러오는 중</span>
+      <div class="loading_view">
+        <div class="wrapper">
+          <div class="loader"></div>
+          <span class="loadingText">데이터 불러오는 중... 😽</span>
+        </div>
       </div>
 
       <header class="header">
         <label class="darkmode_checkbox">
-          <input type="checkbox" />
-          다크모드 여부
+          <input type="checkbox" class="darkmode_input" />
+          <span class="darkmode_text">다크모드 여부</span>
         </label>
-        <input
-          class="SearchInput"
-          type="text"
-          placeholder="고양이를 검색해보세요.|"
-        />
-        <button class="random_button">랜덤냥이</button>
+        <div class="search__container">
+          <input
+            class="SearchInput"
+            type="text"
+            placeholder="고양이를 검색해보세요.😸"
+          />
+          <button class="random_button">랜덤냥이</button>
+        </div>
       </header>
       <ul class="SearchList"></ul>
       <div class="SearchResult"></div>

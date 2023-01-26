@@ -3,25 +3,25 @@ import SearchResult from './SearchResult.js';
 import ImageInfo from './ImageInfo.js';
 import { api } from './api.js';
 
-const loading = document.querySelector('.loading');
+const loading_view = document.querySelector('.loading_view');
+const darkmode_input = document.querySelector('.darkmode_input');
 //const searchList = document.querySelector(".SearchList");
 const searchList = [];
+const randomButton = document.querySelector('.random_button');
 
 export default class App {
   $target = null;
   data = [];
 
   constructor($target) {
-    console.log('app is running!');
     this.$target = $target;
-    this.randomButton = document.querySelector('.random_button');
 
     this.searchInput = new SearchInput({
       onSearch: async (keyword) => {
-        loading.style.visibility = 'visible';
+        loading_view.style.visibility = 'visible';
         const result = await api.fetchCats(keyword);
         this.setState(result.data);
-        loading.style.visibility = 'hidden';
+        loading_view.style.visibility = 'hidden';
         addToSearchList(keyword);
       },
     });
@@ -46,14 +46,22 @@ export default class App {
       },
     });
 
-    this.randomButton.addEventListener('click', () => this.fetchRandom());
+    randomButton.addEventListener('click', () => this.fetchRandom());
+
+    darkmode_input.addEventListener('click', (event) => {
+      if (event.target.checked) {
+        document.body.dataset.theme = 'dark-mode';
+      } else {
+        document.body.dataset.theme = 'light-mode';
+      }
+    });
   }
 
   async fetchRandom() {
-    loading.style.visibility = 'visible';
+    loading_view.style.visibility = 'visible';
     const result = await api.fetchRandom();
     this.setState(result.data);
-    loading.style.visibility = 'hidden';
+    loading_view.style.visibility = 'hidden';
   }
 
   setState(nextData) {

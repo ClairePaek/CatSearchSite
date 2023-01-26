@@ -7,8 +7,6 @@ export default class SearchResult {
     this.searchResult = document.querySelector('.SearchResult');
     this.data = initialData;
     this.onClick = onClick;
-
-    //this.render();
   }
 
   setState(nextData) {
@@ -19,7 +17,7 @@ export default class SearchResult {
   render() {
     this.searchResult.innerHTML =
       this.data.length == 0
-        ? '<span class="noImage"> 검색 결과가 없습니다. </span>'
+        ? '<span class="no_search_result"> 검색 결과가 없습니다. </span>'
         : this.data
             .map(
               (cat) =>
