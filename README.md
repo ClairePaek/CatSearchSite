@@ -3,7 +3,7 @@
 
 `thecatapi`에서 크롤링한 데이터를 이용해 이미지를 검색하도록 구현했습니다.
 
-[영희씨 사진 영접하러 가기]()
+[영희씨 사진 영접하러 가기](https://clairepaek.github.io/CatSearchSite/)
 
 ## SKILLS
 * JavaScript(ES6)
