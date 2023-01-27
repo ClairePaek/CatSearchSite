@@ -1,7 +1,7 @@
 /*변수 목록*/
 body[data-theme='light-mode'] {
   --background-color: #fff3e0;
-  --text-color: #1b0000;
+  --text-color: #1b1b1b;
   --button-color: #ffe97d;
 }
 
@@ -14,14 +14,8 @@ body[data-theme='dark-mode'] {
 :root {
   --loading-indicator-color: #ff9d3f;
   --loading-indicator-background: #efebe9;
-}
-
-/* 시스템 다크모드 변수 */
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: var(--background-color);
-    color: var(--text-color);
-  }
+  --black: #1b1b1b;
+  --white: #fff3e0;
 }
 
 /*기본 설정*/
@@ -56,6 +50,10 @@ body {
   margin: 0;
 }
 
+.container {
+  padding: 1.5em;
+}
+
 .SearchInput {
   width: 100%;
   font-size: 40px;
@@ -63,7 +61,6 @@ body {
 }
 
 .header {
-  padding: 1.5em;
   display: flex;
   flex-direction: column;
 }
@@ -100,10 +97,7 @@ body {
 
 /* 검색 결과 없을 때 UI : TODO */
 .no_search_result {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 1000;
+  visibility: hidden;
 }
 
 /*검색 결과*/
@@ -183,9 +177,9 @@ body {
 /*데이터 로딩 화면*/
 .loading_view {
   position: fixed;
+  visibility: hidden;
   width: 100%;
   height: 100%;
-  visibility: hidden;
   background-color: rgba(0, 0, 0, 0.308);
   z-index: 1000;
 }

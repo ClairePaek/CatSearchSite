@@ -15,17 +15,14 @@ export default class SearchResult {
   }
 
   render() {
-    this.searchResult.innerHTML =
-      this.data.length == 0
-        ? '<span class="no_search_result"> 검색 결과가 없습니다. </span>'
-        : this.data
-            .map(
-              (cat) =>
-                `<div class="item">
+    this.searchResult.innerHTML = this?.data
+      ?.map(
+        (cat) =>
+          `<div class="item">
         <img src=${cat.url} alt=${cat.name} id=${cat.id} />
       </div>`
-            )
-            .join('');
+      )
+      .join('');
 
     this.searchResult.addEventListener('click', (event) => {
       this.onClick(this.data.find((cat) => cat.id == event.target.id));

@@ -1,12 +1,9 @@
 import SearchInput from './SearchInput.js';
 import SearchResult from './SearchResult.js';
 import ImageInfo from './ImageInfo.js';
-import { api } from './api.js';
+import { search, searchRandom } from './utils/searcher.js';
+import { initializeTheme, setTheme } from './viewController.js';
 
-const loading_view = document.querySelector('.loading_view');
-const darkmode_input = document.querySelector('.darkmode_input');
-//const searchList = document.querySelector(".SearchList");
-const searchList = [];
 const randomButton = document.querySelector('.random_button');
 
 export default class App {
@@ -17,16 +14,8 @@ export default class App {
     this.$target = $target;
 
     this.searchInput = new SearchInput({
-      onSearch: async (keyword) => {
-        loading_view.style.visibility = 'visible';
-        const result = await api.fetchCats(keyword);
-        this.setState(result.data);
-        loading_view.style.visibility = 'hidden';
-        addToSearchList(keyword);
-      },
+      onSearch: async (keyword) => this.setState(await search(keyword)),
     });
-
-    this.searchList = [];
 
     this.searchResult = new SearchResult({
       initialData: this.data,
@@ -46,22 +35,11 @@ export default class App {
       },
     });
 
-    randomButton.addEventListener('click', () => this.fetchRandom());
+    randomButton.addEventListener('click', async () =>
+      this.setState(await searchRandom())
+    );
 
-    darkmode_input.addEventListener('click', (event) => {
-      if (event.target.checked) {
-        document.body.dataset.theme = 'dark-mode';
-      } else {
-        document.body.dataset.theme = 'light-mode';
-      }
-    });
-  }
-
-  async fetchRandom() {
-    loading_view.style.visibility = 'visible';
-    const result = await api.fetchRandom();
-    this.setState(result.data);
-    loading_view.style.visibility = 'hidden';
+    initializeTheme();
   }
 
   setState(nextData) {
@@ -70,5 +48,3 @@ export default class App {
     this.searchResult.setState(nextData);
   }
 }
-
-function addToSearchList(keyword) {}

@@ -6,15 +6,16 @@ const request = async (url) => {
     const result = await fetch(`${API_ENDPOINT}/${url}`);
     return result.json();
   } catch (e) {
-    console.warn(e);
+    console.log(e);
     return [];
   }
 };
 
 const api = {
-  fetchCats: async (keyword) => await request(`api/cats/search?q=${keyword}`),
-  fetchRandom: async () => await request('api/cats/random50'),
-  fetchCatById: async (id) => await request(`api/cats/${id}`),
+  getCatsByKeyword: async (keyword) =>
+    await request(`api/cats/search?q=${keyword}`),
+  getRandomCats: async () => await request('api/cats/random50'),
+  getCatById: async (id) => await request(`api/cats/${id}`),
 };
 
 export { api };
