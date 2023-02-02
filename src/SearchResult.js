@@ -15,14 +15,30 @@ export default class SearchResult {
   }
 
   render() {
-    this.searchResult.innerHTML = this?.data
-      ?.map(
-        (cat) =>
-          `<div class="item">
-        <img src=${cat.url} alt=${cat.name} id=${cat.id} />
-      </div>`
-      )
-      .join('');
+    this?.data?.map((cat) => {
+      const item = document.createElement('div');
+      item.style.background = `url("${cat.url}")`;
+      item.style.backgroundSize = '300px 100%';
+      item.style.backgroundRepeat = 'no-repeat';
+      item.setAttribute('alt', cat.name);
+      item.setAttribute('id', cat.id);
+      item.setAttribute('class', 'item');
+
+      const describer = document.createElement('span');
+      describer.setAttribute('class', 'describer');
+      describer.innerText = cat.name;
+      item.appendChild(describer);
+
+      item.addEventListener('mouseover', (event) => {
+        describer.style.visibility = 'visible';
+      });
+
+      item.addEventListener('mouseout', (event) => {
+        describer.style.visibility = 'hidden';
+      });
+
+      this.searchResult.appendChild(item);
+    });
 
     this.searchResult.addEventListener('click', (event) => {
       this.onClick(this.data.find((cat) => cat.id == event.target.id));
