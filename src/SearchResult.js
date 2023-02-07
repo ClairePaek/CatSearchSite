@@ -1,3 +1,4 @@
+import { api } from './api.js';
 export default class SearchResult {
   searchResult = null;
   data = null;
@@ -40,8 +41,9 @@ export default class SearchResult {
       this.searchResult.appendChild(item);
     });
 
-    this.searchResult.addEventListener('click', (event) => {
-      this.onClick(this.data.find((cat) => cat.id == event.target.id));
+    this.searchResult.addEventListener('click', async (event) => {
+      const info = await api.getCatById(event.target.parentNode.id);
+      this.onClick(info.data);
     });
   }
 }

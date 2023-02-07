@@ -16,7 +16,6 @@ async function search(keyword) {
 
 async function searchCore(keyword) {
   const result = await api.getCatsByKeyword(keyword);
-  console.log(result.data);
 
   if (!result?.data?.length) {
     showNoSearchResult();

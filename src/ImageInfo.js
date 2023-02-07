@@ -18,15 +18,15 @@ export default class ImageInfo {
     this.render();
   }
 
-  render() {
-    if (this.data.visible) {
+  async render() {
+    if (this.data.visible && this.data.image) {
       const { name, url, temperament, origin } = this.data.image;
 
       this.$imageInfo.innerHTML = `
         <div class="content-wrapper">
           <div class="title">
             <span>${name}</span>
-            <div class="close">x</div>
+            <button class="close">x</button>
           </div>
           <img src="${url}" alt="${name}"/>        
           <div class="description">

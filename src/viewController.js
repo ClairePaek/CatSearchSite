@@ -39,6 +39,26 @@ function onChangeMode(event) {
   }
 }
 
+document.body.addEventListener('click', (event) => {
+  if (event.target.nodeName == 'BUTTON' && event.target.className == 'close') {
+    event.target.parentNode.parentNode.parentNode.style.display = 'none';
+  }
+
+  if (event.target.className == 'ImageInfo') {
+    event.target.style.display = 'none';
+  }
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') {
+    const imageInfo = document.querySelector('.ImageInfo');
+
+    if (imageInfo) {
+      imageInfo.style.display = 'none';
+    }
+  }
+});
+
 export {
   showLoadingView,
   hideLoadingView,
