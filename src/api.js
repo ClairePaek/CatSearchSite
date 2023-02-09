@@ -4,10 +4,17 @@ const API_ENDPOINT =
 const request = async (url) => {
   try {
     const result = await fetch(`${API_ENDPOINT}/${url}`);
-    return result.json();
+
+    switch (result.status) {
+      case 200:
+      case 204:
+        return result.json();
+      default:
+        throw new Error(result);
+    }
   } catch (e) {
-    console.log(e);
-    return [];
+    console.log(e.status);
+    await request(url);
   }
 };
 

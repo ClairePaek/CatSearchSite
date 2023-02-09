@@ -42,8 +42,10 @@ export default class SearchResult {
     });
 
     this.searchResult.addEventListener('click', async (event) => {
-      const info = await api.getCatById(event.target.parentNode.id);
-      this.onClick(info.data);
+      if (event.target.parentNode.className == 'item') {
+        const info = await api.getCatById(event.target.parentNode.id);
+        this.onClick(info?.data);
+      }
     });
   }
 }

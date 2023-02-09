@@ -19,10 +19,10 @@ async function searchCore(keyword) {
 
   if (!result?.data?.length) {
     showNoSearchResult();
-    return await api.getRandomCats();
+  } else {
+    hideNoSearchResult();
   }
 
-  hideNoSearchResult();
   return result;
 }
 
