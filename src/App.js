@@ -28,7 +28,6 @@ export default class App {
     });
 
     this.imageInfo = new ImageInfo({
-      $target,
       data: {
         visible: false,
         image: null,

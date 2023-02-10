@@ -60,6 +60,13 @@ body {
   padding: 10px 15px;
 }
 
+/* 검색창 폰트 크기*/
+@media screen and (min-width: 550px) {
+  .SearchInput {
+    font-size: 40px;
+  }
+}
+
 .header {
   display: flex;
   flex-direction: column;
@@ -158,6 +165,7 @@ body {
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
+  visibility: hidden;
 }
 
 .ImageInfo .title {
@@ -172,12 +180,18 @@ body {
 
 .ImageInfo .content-wrapper {
   position: absolute;
+  opacity: 0;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   background-color: #fff;
   border: 1px solid #eee;
   border-radius: 5px;
+  -webkit-transition: opacity 0.3s ease-in-out;
+  -moz-transition: opacity 0.3s ease-in-out;
+  -ms-transition: opacity 0.3s ease-in-out;
+  -o-transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3 ease-in-out;
 }
 
 .ImageInfo .content-wrapper img {
