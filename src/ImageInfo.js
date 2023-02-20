@@ -18,7 +18,7 @@ export default class ImageInfo {
       updateImageModal(`
         <div class="title">
           <span>${name}</span>
-          <button class="close">x</button>
+          <button class="close">X</button>
         </div>
         <img src="${url}" alt="${name}"/>
         <div class="description">

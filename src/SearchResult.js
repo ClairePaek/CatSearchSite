@@ -8,6 +8,13 @@ export default class SearchResult {
     this.searchResult = document.querySelector('.SearchResult');
     this.data = initialData;
     this.onClick = onClick;
+
+    this.searchResult.addEventListener('click', async (event) => {
+      if (event.target.parentNode.className == 'item') {
+        const info = await api.getCatById(event.target.parentNode.id);
+        this.onClick(info?.data);
+      }
+    });
   }
 
   setState(nextData) {
@@ -16,6 +23,8 @@ export default class SearchResult {
   }
 
   render() {
+    this.searchResult.innerHTML = '';
+
     this?.data?.map((cat) => {
       const item = document.createElement('div');
       item.style.background = `url("${cat.url}")`;
@@ -39,13 +48,6 @@ export default class SearchResult {
       });
 
       this.searchResult.appendChild(item);
-    });
-
-    this.searchResult.addEventListener('click', async (event) => {
-      if (event.target.parentNode.className == 'item') {
-        const info = await api.getCatById(event.target.parentNode.id);
-        this.onClick(info?.data);
-      }
     });
   }
 }

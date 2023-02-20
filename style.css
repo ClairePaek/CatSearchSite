@@ -36,6 +36,12 @@ body {
   margin: 0;
 }
 
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 *,
 *:before,
 *:after {
@@ -157,6 +163,27 @@ body {
   visibility: hidden;
 }
 
+.search_list_countainer {
+  display: flex;
+  align-items: center;
+  margin: 10px 0 12px 12px;
+}
+
+.search_list_countainer span {
+  font-weight: bold;
+}
+
+.search_list {
+  display: flex;
+}
+
+.search_list li {
+  background-color: #ff9d3f;
+  margin: 0 10px;
+  padding: 5px 30px;
+  border-radius: 5px;
+}
+
 /*상세정보 모달*/
 .ImageInfo {
   position: fixed;
@@ -171,11 +198,20 @@ body {
 .ImageInfo .title {
   display: flex;
   justify-content: space-between;
+  font-weight: bold;
 }
 
 .ImageInfo .title,
 .ImageInfo .description {
-  padding: 5px;
+  padding: 20px 5px;
+  background-color: #ffc187;
+}
+
+.ImageInfo .close {
+  cursor: pointer;
+  background-color: #1b1b1b;
+  border-radius: 4px;
+  color: #eee;
 }
 
 .ImageInfo .content-wrapper {

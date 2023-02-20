@@ -3,6 +3,7 @@ import SearchResult from './SearchResult.js';
 import ImageInfo from './ImageInfo.js';
 import { search, searchRandom } from './utils/searcher.js';
 import { initializeTheme, setTheme } from './viewController.js';
+import { updateSearchList } from './searchList.js';
 
 const randomButton = document.querySelector('.random_button');
 
@@ -14,7 +15,10 @@ export default class App {
     this.$target = $target;
 
     this.searchInput = new SearchInput({
-      onSearch: async (keyword) => this.setState(await search(keyword)),
+      onSearch: async (keyword) => {
+        updateSearchList(keyword);
+        this.setState(await search(keyword));
+      },
     });
 
     this.searchResult = new SearchResult({
